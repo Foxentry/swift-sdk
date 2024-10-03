@@ -1,0 +1,41 @@
+/**
+ * Foxentry API reference
+ *
+ * The version of the OpenAPI document: 2.0
+ * Contact: info@foxentry.com
+ *
+ * NOTE: This file is auto generated.
+ * Do not edit the file manually.
+ */
+import Foundation
+
+/**
+ * Method Not Allowed.
+ */
+public class Error405: ResponseStatus405 {
+    public var request: GlobalRequest?
+    public var errors: [Error405RequestNotAllowedMethod]?
+    public init(
+        request: GlobalRequest?,
+        errors: [Error405RequestNotAllowedMethod]?,
+        status: Int?
+    ) {
+        self.request = request
+        self.errors = errors
+        super.init(
+            status: status
+        )
+    }
+
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        request = try container.decodeIfPresent(GlobalRequest.self, forKey: .request)
+        errors = try container.decodeIfPresent([Error405RequestNotAllowedMethod].self, forKey: .errors)
+        try super.init(from: decoder)
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case request
+        case errors
+    }
+}
