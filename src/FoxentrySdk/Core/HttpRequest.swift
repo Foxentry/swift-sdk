@@ -13,6 +13,8 @@ class HttpRequest {
     enum Constants {
         static let headerContentType = "Content-Type"
         static let contentTypeJson = "application/json; charset=UTF-8"
+        static let headerApiVersion = "foxentry-api-version"
+        static let apiVersion = "2.0"
     }
 
     private let session: URLSession
@@ -33,6 +35,7 @@ class HttpRequest {
 
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = request.method.rawValue
+        urlRequest.setValue(Constants.apiVersion, forHTTPHeaderField: Constants.headerApiVersion)
 
         for (header, value) in request.headers {
             urlRequest.setValue(value, forHTTPHeaderField: header)
